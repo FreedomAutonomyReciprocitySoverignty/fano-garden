@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "kind": "bundle.verify",
+  "pass": true,
+  "generated_at": "1970-01-01T00:00:00Z",
+  "bundle_dir": "/home/main/devops/light-garden/narrative-series/Artifacts",
+  "policy": {
+    "require_waveform_render": false,
+    "require_narrative": true,
+    "require_dashboard": true
+  },
+  "lanes": {
+    "waveform_render": {
+      "schema_version": 1,
+      "kind": "waveform.render.verify",
+      "lane_id": "waveform",
+      "pass": true,
+      "attached": false,
+      "verified": false,
+      "require": false,
+      "issues": [
+        "missing check file: waveform.render.check.json"
+      ],
+      "failures": [],
+      "inputs": {
+        "check": null
+      },
+      "outputs": {},
+      "run_id": "sha256:6d1f56ee3a7730619f2ff8bb90e272b1808910a9a79029ba1afd2a3d17b637f7"
+    },
+    "narrative": {
+      "schema_version": 1,
+      "kind": "narrative.verify",
+      "lane_id": "narrative",
+      "pass": true,
+      "attached": true,
+      "verified": true,
+      "require": true,
+      "issues": [],
+      "failures": [],
+      "inputs": {
+        "check": {
+          "path": "narrative.check.json",
+          "sha256": "sha256:2dac729d6cd0ae89c493bce630fdcbdb26e40cbfdc0658005c27be037058224d"
+        }
+      },
+      "outputs": {
+        "verified_count": 3,
+        "files": [
+          {
+            "name": "narrative.save.template.json",
+            "path": "narrative.save.template.json",
+            "sha256": "sha256:db933a8997404b11ca63bdc2bb86cf9016be914b3f042de7cd7dd39b8666abe0"
+          },
+          {
+            "name": "narrative.scene.patch.json",
+            "path": "narrative.scene.patch.json",
+            "sha256": "sha256:cb257707e242e776526df3aecd9fa27bfd8eeebb89b3d1b9beff6b4236b012ed"
+          },
+          {
+            "name": "narrative.timeline.ndjson",
+            "path": "narrative.timeline.ndjson",
+            "sha256": "sha256:dc15eef0aa6a302d17b72f1702704fb800f0d493662c7a936dab8ac05e8adee3"
+          }
+        ]
+      },
+      "run_id": "sha256:0925bc32a3ae507fe9e8463a6fef12c68098b0a2f10a97b976fea03772bc8492"
+    },
+    "dashboard": {
+      "schema_version": 1,
+      "kind": "world.dashboard.verify",
+      "lane_id": "dashboard",
+      "pass": true,
+      "attached": true,
+      "verified": true,
+      "require": true,
+      "issues": [],
+      "failures": [],
+      "inputs": {
+        "check": {
+          "path": "world.dashboard.check.json",
+          "sha256": "sha256:b7d586cad3e9706b3c84f0057cf799958fd5a1ca9d6a56b3793ff9cfccbc0cc0"
+        }
+      },
+      "outputs": {
+        "verified_count": 2,
+        "files": [
+          {
+            "name": "dashboard-render.ndjson",
+            "path": "dashboard-render.ndjson",
+            "sha256": "sha256:183a4615a212741ac8f4599d88b62f386921ec395ca0b0397fa8d52a9e44bddb"
+          },
+          {
+            "name": "world.dashboard.svg",
+            "path": "world.dashboard.svg",
+            "sha256": "sha256:a2ee162bcbce0b1e3746f4b14f55d941f06d0331264c484714cf94eafdb5eaaa"
+          }
+        ]
+      },
+      "run_id": "sha256:d75d3676e394477943004a3323c5f300f41afca2900262737b840088476415eb"
+    }
+  },
+  "failures": [],
+  "run_id": "sha256:6c7fe0f727670fa2a3ced6a90318af8401fe31cacc0066cae6292925fc104078"
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "kind": "narrative.verify",
+  "lane_id": "narrative",
+  "pass": true,
+  "attached": true,
+  "verified": true,
+  "require": true,
+  "issues": [],
+  "failures": [],
+  "inputs": {
+    "check": {
+      "path": "narrative.check.json",
+      "sha256": "sha256:2dac729d6cd0ae89c493bce630fdcbdb26e40cbfdc0658005c27be037058224d"
+    }
+  },
+  "outputs": {
+    "verified_count": 3,
+    "files": [
+      {
+        "name": "narrative.save.template.json",
+        "path": "narrative.save.template.json",
+        "sha256": "sha256:db933a8997404b11ca63bdc2bb86cf9016be914b3f042de7cd7dd39b8666abe0"
+      },
+      {
+        "name": "narrative.scene.patch.json",
+        "path": "narrative.scene.patch.json",
+        "sha256": "sha256:cb257707e242e776526df3aecd9fa27bfd8eeebb89b3d1b9beff6b4236b012ed"
+      },
+      {
+        "name": "narrative.timeline.ndjson",
+        "path": "narrative.timeline.ndjson",
+        "sha256": "sha256:dc15eef0aa6a302d17b72f1702704fb800f0d493662c7a936dab8ac05e8adee3"
+      }
+    ]
+  },
+  "run_id": "sha256:0925bc32a3ae507fe9e8463a6fef12c68098b0a2f10a97b976fea03772bc8492"
+}

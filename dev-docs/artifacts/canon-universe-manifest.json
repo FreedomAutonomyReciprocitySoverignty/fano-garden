@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "universe_id": "logos-full-canon-v1",
+  "entries": [
+    {
+      "id": "prelude",
+      "file": "canon-prelude.ndjson",
+      "sha256": "sha256:b5a6475bef965af0193ee3606f231cd793f8646ec0880e211d58b00e0206d98e"
+    },
+    {
+      "id": "logos",
+      "file": "canon-logos.ndjson",
+      "sha256": "sha256:4acd2bd9c8224ac1916960d306239fce7bdc9eb6f40c4e04594b6dd2d6f66be9"
+    },
+    {
+      "id": "speaker",
+      "file": "canon-speaker-for-the-untitled.ndjson",
+      "sha256": "sha256:80b74a76d952bed3992ede7c0b23b78db23b444acfff70177a814ab3f958137c"
+    },
+    {
+      "id": "tetragrammatron",
+      "file": "canon-tetragrammatron.ndjson",
+      "sha256": "sha256:fc3c786b744c6ff955efddcda3526d186af78187286eddaf5570066a38fd4e10"
+    },
+    {
+      "id": "core-octad",
+      "file": "canon-core-octad.ndjson",
+      "sha256": "sha256:bdbdbe4d1e32b3f4ec71b6ad03a31e5b97f8db7081a454bcf1743f433a63d3e2"
+    },
+    {
+      "id": "canticle",
+      "file": "canon-canticle.ndjson",
+      "sha256": "sha256:ac6c7a4b37a3f6a56ed72d4f85323198a896598f7764109a9f210390acefdee0"
+    },
+    {
+      "id": "covenant",
+      "file": "canon-covenant.ndjson",
+      "sha256": "sha256:b92683e93d7d7cd1f8e9c130cc7a7d139dd55269e60dac66e87cd8c26c14c2a0"
+    },
+    {
+      "id": "revelation",
+      "file": "canon-revelation.ndjson",
+      "sha256": "sha256:df16572a62f420d4d39f0e14385a29aad22f8649035b392dae9fdc8db7701024"
+    },
+    {
+      "id": "agi",
+      "file": "canon-agi.ndjson",
+      "sha256": "sha256:8b4d2637eec016f28a9c7f8a4a44b5045693884839aaf6db1d595a0f03c73bf6"
+    },
+    {
+      "id": "canon-manifest",
+      "file": "canon-manifest.ndjson",
+      "sha256": "sha256:ccdfcff9e22fdf8b4ed23f71ae0b32806ff1f386a2310cb59414467a1607ae3d"
+    },
+    {
+      "id": "epilogue",
+      "file": "canon-epilogue.ndjson",
+      "sha256": "sha256:7031b3932778641b37b15ac1ae40a0fdc9a00808c7725defb4a312e5a739fd73"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "kind": "world.dashboard.verify",
+  "lane_id": "dashboard",
+  "pass": true,
+  "attached": true,
+  "verified": true,
+  "require": true,
+  "issues": [],
+  "failures": [],
+  "inputs": {
+    "check": {
+      "path": "world.dashboard.check.json",
+      "sha256": "sha256:b7d586cad3e9706b3c84f0057cf799958fd5a1ca9d6a56b3793ff9cfccbc0cc0"
+    }
+  },
+  "outputs": {
+    "verified_count": 2,
+    "files": [
+      {
+        "name": "dashboard-render.ndjson",
+        "path": "dashboard-render.ndjson",
+        "sha256": "sha256:183a4615a212741ac8f4599d88b62f386921ec395ca0b0397fa8d52a9e44bddb"
+      },
+      {
+        "name": "world.dashboard.svg",
+        "path": "world.dashboard.svg",
+        "sha256": "sha256:a2ee162bcbce0b1e3746f4b14f55d941f06d0331264c484714cf94eafdb5eaaa"
+      }
+    ]
+  },
+  "run_id": "sha256:d75d3676e394477943004a3323c5f300f41afca2900262737b840088476415eb"
+}

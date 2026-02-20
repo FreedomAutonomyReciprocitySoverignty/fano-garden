@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "canonical_host": "universal-life-protocol.com",
+  "hdwallet": {
+    "coin_type": 60,
+    "account": 0,
+    "xpub_path": "m/44'/60'/0'",
+    "address_path": "m/44'/60'/0'/0/{index}",
+    "index_mode": "sha256(label)->u32"
+  },
+  "personas": {
+    "solon": {
+      "domain": "universallifeprotocol.store",
+      "role": "PRIVATE_KEY_CONSUMER"
+    },
+    "asabiyyah": {
+      "domain": "universallifeprotocol.net",
+      "role": "PRIVATE_KEY_CONSUMER"
+    },
+    "solomon": {
+      "domain": "universallifeprotocol.online",
+      "role": "PRIVATE_KEY_CONSUMER"
+    },
+    "enoch": {
+      "domain": "universallifeprotocol.com",
+      "role": "PRIVATE_KEY_PROVIDER"
+    },
+    "metatron": {
+      "domain": "universal-life-protocol.com",
+      "role": "EXTENDED_KEY_PROVIDER"
+    },
+    "adam": {
+      "domain": "knownoknowledge.com",
+      "role": "PUBLIC_KEY_SIGNER"
+    },
+    "eve": {
+      "domain": "deliveryforlocals.com",
+      "role": "PUBLIC_KEY_SIGNER"
+    }
+  }
+}
+

@@ -1,0 +1,5 @@
+{"seq":1,"timestamp":"1970-01-01T00:00:01Z","lane":"bundle","event":"bundle.verify.start","payload":{"dir":"/home/main/devops/light-garden/narrative-series/Artifacts","out_dir":"/home/main/devops/light-garden/narrative-series/Artifacts"}}
+{"seq":2,"timestamp":"1970-01-01T00:00:02Z","lane":"bundle","event":"bundle.verify.lane","payload":{"lane":"waveform_render","status":0}}
+{"seq":3,"timestamp":"1970-01-01T00:00:03Z","lane":"bundle","event":"bundle.verify.lane","payload":{"lane":"narrative","status":0}}
+{"seq":4,"timestamp":"1970-01-01T00:00:04Z","lane":"bundle","event":"bundle.verify.lane","payload":{"lane":"dashboard","status":0}}
+{"seq":5,"timestamp":"1970-01-01T00:00:05Z","lane":"bundle","event":"bundle.verify.end","payload":{"pass":true,"failures":0}}

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "kind": "waveform.render.verify",
+  "lane_id": "waveform",
+  "pass": false,
+  "attached": false,
+  "verified": false,
+  "require": false,
+  "issues": [
+    "missing check file: waveform.render.check.json"
+  ],
+  "failures": [],
+  "inputs": {
+    "check": null
+  },
+  "outputs": {},
+  "run_id": "sha256:6d1f56ee3a7730619f2ff8bb90e272b1808910a9a79029ba1afd2a3d17b637f7"
+}
