@@ -18,7 +18,7 @@ Required fields:
 - `parents` array of strings
 - `vertex` object or null
 - `edges` array
-- `faces` array
+- `faces` array (`evidence` entries may contain structured JSON objects)
 - `centroid` object
 - `status` enum: `pending|validated|sealed|quarantined`
 - `prev_hash` string or null
@@ -27,6 +27,8 @@ Required fields:
 
 Optional fields:
 - `lc` integer logical counter (`>= 0`), monotonic within a runtime instance
+- `merkle` object (when present)
+- `identities` array (when present)
 
 Example:
 ```json

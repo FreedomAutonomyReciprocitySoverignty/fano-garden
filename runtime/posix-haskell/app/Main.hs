@@ -12,6 +12,7 @@ import Data.Text (Text)
 import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import System.Environment (getArgs, lookupEnv)
+import Control.Applicative ((<|>))
 import System.Process (readProcess)
 import ULP.Canonical (sha256Hex, stableJson)
 import ULP.Merge (chooseTip, mergeCommits)
@@ -33,7 +34,9 @@ defaultOptionsIO :: FilePath -> IO RuntimeOptions
 defaultOptionsIO rootDir = do
   signerScript <- lookupEnv "ULP_TEST_SIGNER_JS"
   verifierScript <- lookupEnv "ULP_TEST_VERIFIER_JS"
+  expectedSigner <- lookupEnv "ULP_TEST_EXPECTED_SIGNER"
   expectedAddress <- lookupEnv "ULP_TEST_EXPECTED_ADDRESS"
+  let expectedIdentity = fromMaybe "" (expectedSigner <|> expectedAddress)
 
   let signerHook =
         fmap
@@ -46,8 +49,7 @@ defaultOptionsIO rootDir = do
       verifierHook =
         fmap
           (\script c msg -> do
-              let expected = fromMaybe "" expectedAddress
-              out <- readProcess "node" [script, T.unpack msg, T.unpack (sig c), expected] ""
+              out <- readProcess "node" [script, T.unpack msg, T.unpack (sig c), expectedIdentity] ""
               pure (trim out == "true")
           )
           verifierScript
