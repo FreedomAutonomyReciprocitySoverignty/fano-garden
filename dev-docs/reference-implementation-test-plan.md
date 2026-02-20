@@ -47,6 +47,9 @@ Pass: tip `self_hash` equality on both peers.
 
 Pass: full state hash equality.
 
+Addendum:
+- When injected `clock()` and `lc` are used, identical inputs must yield identical commit ids/hashes across runs.
+
 ### T7. Projection Consistency
 - Given a selected commit id
 - When rendering SVG and Three.js views
@@ -68,10 +71,17 @@ Pass: quarantine event emitted and canonical chain unchanged.
 
 Pass: zero secret matches.
 
+### T10. Logical Clock Determinism
+- Given two runs with identical deterministic clock inputs
+- When commits are generated and merged
+- Then `lc` must be monotonic, commit hashes must match across runs, and tip selection must prioritize higher `lc` over wall-clock timestamp
+
+Pass: deterministic equality for hashes and deterministic tip by `lc`.
+
 ## Failure-Mode Scenarios
 - F1. Missing SVG points (not 7): parser hard-fails before identity derivation
 - F2. Non-canonical line table: face evaluation rejects configuration
-- F3. Clock skew in peers: ordering resolved by causal links then deterministic tie-break
+- F3. Clock skew in peers: ordering resolved by causal links, then logical counter `lc` (if present), then deterministic tie-break
 - F4. Duplicate delivery: duplicate suppression by `self_hash`
 - F5. Unsigned commit: auto-quarantine
 - F6. Corrupt NDJSON line: skip line, emit validation error event
@@ -82,6 +92,6 @@ Pass: zero secret matches.
 - End-to-end: parse SVG -> generate commits -> sync peers -> render projections
 
 ## Exit Gates
-- All T1-T9 passing
+- All T1-T10 passing
 - No high severity failures in F1-F6
 - Deterministic reproducibility verified on two separate runs

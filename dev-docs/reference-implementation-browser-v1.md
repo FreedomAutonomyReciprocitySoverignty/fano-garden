@@ -81,6 +81,7 @@ Constraints:
 ### CommitEvent (NDJSON)
 - `id`: string (content-addressable id or UUID)
 - `t`: integer unix ms timestamp
+- `lc`: optional integer logical counter (`>= 0`), monotonic within a runtime instance
 - `type`: enum `vertex_init|edge_update|face_eval|commit|projection|sync`
 - `parents`: array of prior commit ids (possibly empty for genesis)
 - `vertex`: object or null
@@ -91,6 +92,11 @@ Constraints:
 - `prev_hash`: hex string or `null` for genesis
 - `self_hash`: hex string
 - `sig`: string (signature over canonicalized payload)
+
+`lc` semantics:
+- `lc` is a local sequencing counter used as a deterministic tie-breaker
+- `lc` does not imply global wall-clock time
+- cross-peer causality is still represented by `parents` and hash links
 
 ### ProjectionEvent
 - `source_commit`: commit id
@@ -149,10 +155,10 @@ A commit is valid iff all are true:
 Invalid commits must be marked `quarantined` and excluded from tip selection.
 
 ### R6. Merge Semantics
-- Causal ordering: topological order by parent links, then timestamp, then lexical `id`
+- Causal ordering: topological order by parent links, then logical counter `lc` (if present), then timestamp, then lexical `id`
 - Duplicate suppression: identical `self_hash` kept once
 - Conflict policy: `sealed` supersedes `pending` only when hash-valid and invariant-complete
-- If two valid sealed commits compete at same height, choose deterministic winner by lexical minimum `self_hash`; retain loser as alternate branch metadata
+- If two valid sealed commits compete at same height, choose deterministic winner by highest `lc` (if present), then latest timestamp, then lexical minimum `self_hash`; retain loser as alternate branch metadata
 
 ## Event Flow (Normative)
 1. Parse canonical SVG
