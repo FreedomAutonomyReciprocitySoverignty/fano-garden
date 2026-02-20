@@ -4,7 +4,6 @@ module ULP.Validate
   ( validateCommit
   ) where
 
-import Data.Text (Text)
 import ULP.Canonical
 import ULP.Merkle
 import ULP.Types

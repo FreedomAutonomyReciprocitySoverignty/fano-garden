@@ -10,12 +10,12 @@ import Crypto.Hash (Digest, SHA256, hash)
 import Data.Aeson
 import qualified Data.Aeson.Key as K
 import qualified Data.Aeson.KeyMap as KM
-import qualified Data.ByteArray.Encoding as B16
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Char8 as BSC
 import qualified Data.ByteString.Lazy as LBS
 import Data.List (sortOn)
 import Data.Text (Text)
+import qualified Data.Text as T
 import qualified Data.Text.Encoding as TE
 import ULP.Types
 
@@ -33,8 +33,8 @@ sha256Hex :: BS.ByteString -> Text
 sha256Hex bs =
   let d :: Digest SHA256
       d = hash bs
-      hex = (B16.convertToBase B16.Base16 d :: BS.ByteString)
-   in TE.decodeUtf8 (BSC.pack "0x" <> hex)
+      hex = T.toLower (T.pack (show d))
+   in TE.decodeUtf8 (BSC.pack "0x" <> TE.encodeUtf8 hex)
 
 commitToCanonicalValue :: CommitEvent -> Value
 commitToCanonicalValue c =

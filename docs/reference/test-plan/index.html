@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Test Plan | fano-garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../assets/site/styles.css" />
+    <script defer src="../../assets/site/base-path.js"></script>
+  </head>
+  <body>
+    <main class="site">
+      <nav class="nav">
+        <a data-nav-path="/">Home</a>
+        <a data-nav-path="/quickstart/">Quickstart</a>
+        <a data-nav-path="/demo/">Live Demo</a>
+        <a data-nav-path="/reference/">Reference</a>
+      </nav>
+      <article class="doc">
+        <h1>Reference Test Plan (browser-v1)</h1>
+        <p>Acceptance requires all required tests pass, with no critical privacy/integrity violations.</p>
+
+        <h2>Required Matrix</h2>
+        <ul>
+          <li>T1: deterministic identity mapping.</li>
+          <li>T2: NDJSON append continuity (<code>prev_hash</code> chain intact).</li>
+          <li>T3: full closure yields <code>stop_metric=1.0</code>, <code>sabbath=true</code>.</li>
+          <li>T4: partial/invalid closure keeps <code>sabbath=false</code>.</li>
+          <li>T5: WebRTC convergence to same deterministic tip.</li>
+          <li>T6: replay determinism from NDJSON alone.</li>
+          <li>T7: projection topology consistency between SVG and Three.js targets.</li>
+          <li>T8: tamper quarantine excludes invalid records from tip selection.</li>
+          <li>T9: identity privacy (no mnemonic/private key/xprv leakage).</li>
+          <li>T10: logical clock determinism and tie-break behavior.</li>
+        </ul>
+
+        <h2>Failure Modes</h2>
+        <ul>
+          <li>F1: missing SVG points (not 7) must hard-fail parse stage.</li>
+          <li>F2: non-canonical line table rejected by face evaluation.</li>
+          <li>F3: peer clock skew resolved by causal links, then <code>lc</code>, then deterministic tie-break.</li>
+          <li>F4: duplicate delivery suppressed by <code>self_hash</code>.</li>
+          <li>F5: unsigned commit auto-quarantine.</li>
+          <li>F6: corrupt NDJSON line skipped with validation error emission.</li>
+        </ul>
+
+        <h2>Exit Gates</h2>
+        <ul>
+          <li>All T1-T10 passing.</li>
+          <li>No high-severity F1-F6 failures.</li>
+          <li>Deterministic reproducibility validated on two runs.</li>
+        </ul>
+
+        <p>Full source: <a href="https://github.com/FreedomAutonomyReciprocitySoverignty/fano-garden/blob/main/dev-docs/reference-implementation-test-plan.md">dev-docs/reference-implementation-test-plan.md</a></p>
+      </article>
+    </main>
+  </body>
+</html>

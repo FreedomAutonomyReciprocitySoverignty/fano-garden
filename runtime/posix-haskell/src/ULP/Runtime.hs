@@ -7,11 +7,10 @@ module ULP.Runtime
   , validateLog
   ) where
 
-import Data.Int (Int64)
-import Data.Text (Text)
 import qualified Data.Text as T
 import ULP.Canonical
 import ULP.Merkle
+import ULP.NDJSON (decodeFile)
 import ULP.Storage
 import ULP.Types
 import ULP.Validate
@@ -31,8 +30,8 @@ mkDefaultCentroid = CentroidState {stop_metric = 0, closure_ratio = 0, sabbath =
 appendRuntimeCommit :: Runtime -> CommitType -> IO CommitEvent
 appendRuntimeCommit rt ty = do
   let opts = options rt
-      root = storageRoot opts
-  prior <- loadLog root
+      rootDir = storageRoot opts
+  prior <- loadLog rootDir
   ts <- clock opts
   let lcNext = case reverse prior of
         [] -> counterStart opts + 1
@@ -68,7 +67,7 @@ appendRuntimeCommit rt ty = do
         sigText <- s hashed (getSigningMessage hashed)
         pure hashed {sig = sigText}
 
-  appendCommit root signed
+  appendCommit rootDir signed
   pure signed
 
 validateLog :: Runtime -> FilePath -> IO [ValidationResult]

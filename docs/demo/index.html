@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Live Demo | fano-garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/site/styles.css" />
+    <script defer src="../assets/site/base-path.js"></script>
+    <style>
+      .demo-grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: 1fr 1fr;
+      }
+      .demo-panel {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--card);
+        padding: 12px;
+        min-height: 360px;
+      }
+      #overlay {
+        width: 100%;
+        min-height: 320px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #13110f;
+      }
+      #log {
+        margin: 0;
+        white-space: pre-wrap;
+        font-size: 12px;
+      }
+      @media (max-width: 900px) {
+        .demo-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="site">
+      <nav class="nav">
+        <a data-nav-path="/">Home</a>
+        <a data-nav-path="/quickstart/">Quickstart</a>
+        <a data-nav-path="/demo/">Live Demo</a>
+        <a data-nav-path="/reference/">Reference</a>
+      </nav>
+
+      <section class="hero">
+        <h1>Browser Runtime Demo</h1>
+        <p>Flow: parse canonical SVG -> derive public identities -> evaluate invariants -> sign commit -> project state.</p>
+        <div class="callout">
+          Demo mnemonic is test-only. Never use demo phrases in production or store secret material in logs.
+        </div>
+      </section>
+
+      <section class="demo-grid" style="margin-top: 16px;">
+        <div class="demo-panel">
+          <h2>SVG Overlay</h2>
+          <div id="overlay"></div>
+        </div>
+        <div class="demo-panel">
+          <h2>Runtime Log</h2>
+          <pre id="log"></pre>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6/dist/ethers.umd.min.js"></script>
+    <script type="module" src="../assets/demo/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Reference | fano-garden</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/site/styles.css" />
+    <script defer src="../assets/site/base-path.js"></script>
+  </head>
+  <body>
+    <main class="site">
+      <nav class="nav">
+        <a data-nav-path="/">Home</a>
+        <a data-nav-path="/quickstart/">Quickstart</a>
+        <a data-nav-path="/demo/">Live Demo</a>
+        <a data-nav-path="/reference/">Reference</a>
+      </nav>
+
+      <article class="doc">
+        <h1>Reference Docs</h1>
+        <p>Browser-first v1 behavior is normative. Use these pages as protocol source for implementation and interoperability.</p>
+        <div class="grid">
+          <section class="card">
+            <h2>Architecture + Rules</h2>
+            <p>Canonical architecture, deterministic rules, merge semantics, event flow.</p>
+            <p><a data-nav-path="/reference/browser-v1/">Open browser-v1 spec</a></p>
+          </section>
+          <section class="card">
+            <h2>Glossary</h2>
+            <p>Symbolic terms mapped to implementation vocabulary.</p>
+            <p><a data-nav-path="/reference/glossary/">Open glossary</a></p>
+          </section>
+          <section class="card">
+            <h2>NDJSON Schemas</h2>
+            <p>Frozen commit/projection/sync fields, examples, canonicalization constraints.</p>
+            <p><a data-nav-path="/reference/schemas/">Open schemas</a></p>
+          </section>
+          <section class="card">
+            <h2>Test Plan</h2>
+            <p>Acceptance matrix, failure modes, and deterministic reproducibility gates.</p>
+            <p><a data-nav-path="/reference/test-plan/">Open test plan</a></p>
+          </section>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
