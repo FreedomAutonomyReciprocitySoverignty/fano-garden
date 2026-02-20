@@ -28,7 +28,8 @@ export function ethersPublicDeriver(ethersApi, phrase) {
   if (!ethersApi || !ethersApi.HDNodeWallet) {
     throw new Error("ethers v6 HDNodeWallet API is required for ethersPublicDeriver");
   }
-  const wallet = ethersApi.HDNodeWallet.fromPhrase(phrase);
+  // Force root node depth so absolute derivation paths like m/44'/... are valid.
+  const wallet = ethersApi.HDNodeWallet.fromPhrase(phrase, undefined, "m");
 
   return async (path) => {
     const child = wallet.derivePath(path);

@@ -43,7 +43,7 @@ async function main() {
 
   // Demo-only phrase. Never log or persist this.
   const phrase = "test test test test test test test test test test test junk";
-  const signer = window.ethers.HDNodeWallet.fromPhrase(phrase).derivePath("m/44'/60'/0'/0/0");
+  const signer = window.ethers.HDNodeWallet.fromPhrase(phrase, undefined, "m").derivePath("m/44'/60'/0'/0/0");
 
   const runtime = new BrowserV1Runtime({
     signing: {
