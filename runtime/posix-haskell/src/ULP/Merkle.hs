@@ -7,6 +7,7 @@ module ULP.Merkle
   ) where
 
 import Data.Aeson (ToJSON (toJSON), object, (.=))
+import Data.List (sortOn)
 import qualified Data.ByteString.Char8 as BSC
 import Data.Maybe (fromMaybe)
 import Data.Text (Text)
@@ -15,7 +16,9 @@ import ULP.Canonical
 import ULP.Types
 
 pairHash :: Text -> Text -> Text
-pairHash a b = sha256Hex (BSC.pack (T.unpack a ++ "|" ++ T.unpack b))
+pairHash a b = sha256Hex (BSC.pack (T.unpack (stripHex a) ++ "|" ++ T.unpack (stripHex b)))
+  where
+    stripHex t = fromMaybe t (T.stripPrefix "0x" t)
 
 merkleRoot :: [Text] -> Text
 merkleRoot [] = sha256Hex "empty"
@@ -40,21 +43,21 @@ computeCommitMerkle c =
         case lc c of
           Nothing ->
             object
-              [ "cid" .= cid c
+              [ "id" .= cid c
               , "t" .= t c
-              , "ctype" .= ctype c
+              , "type" .= ctype c
               , "parents" .= parents c
-              , "cstatus" .= cstatus c
+              , "status" .= cstatus c
               , "prev_hash" .= prev_hash c
               ]
           Just n ->
             object
-              [ "cid" .= cid c
+              [ "id" .= cid c
               , "t" .= t c
               , "lc" .= n
-              , "ctype" .= ctype c
+              , "type" .= ctype c
               , "parents" .= parents c
-              , "cstatus" .= cstatus c
+              , "status" .= cstatus c
               , "prev_hash" .= prev_hash c
               ]
       metaHash = sha256Hex (stableJson metaObj)
@@ -76,9 +79,11 @@ validateCommitMerkle c =
     Nothing -> True
     Just m ->
       let expected = computeCommitMerkle c
+          s1 = sortOn fst (sections m)
+          s2 = sortOn fst (sections expected)
        in version m == version expected
             && leaf_order m == leaf_order expected
-            && sections m == sections expected
+            && s1 == s2
             && root m == root expected
 
 getSigningMessage :: CommitEvent -> Text

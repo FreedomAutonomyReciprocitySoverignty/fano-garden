@@ -1,0 +1,8 @@
+{
+  "area:runtime-js": ["@bthornemail"],
+  "area:runtime-hs": ["@bthornemail"],
+  "area:interop": ["@bthornemail"],
+  "area:projection-svg": ["@bthornemail"],
+  "area:projection-glb": ["@bthornemail"],
+  "area:docs": ["@bthornemail"]
+}

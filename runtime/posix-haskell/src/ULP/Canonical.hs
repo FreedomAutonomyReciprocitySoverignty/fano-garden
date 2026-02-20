@@ -39,17 +39,17 @@ sha256Hex bs =
 commitToCanonicalValue :: CommitEvent -> Value
 commitToCanonicalValue c =
   object
-    [ "cid" .= cid c
+    [ "id" .= cid c
     , "t" .= t c
     , "lc" .= lc c
-    , "ctype" .= ctype c
+    , "type" .= ctype c
     , "parents" .= parents c
     , "identities" .= identities c
     , "vertex" .= vertex c
     , "edges" .= edges c
     , "faces" .= faces c
     , "centroid" .= centroid c
-    , "cstatus" .= cstatus c
+    , "status" .= cstatus c
     , "prev_hash" .= prev_hash c
     , "merkle" .= merkle c
     ]

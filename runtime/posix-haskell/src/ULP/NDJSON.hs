@@ -8,6 +8,7 @@ module ULP.NDJSON
   ) where
 
 import qualified Data.Aeson as A
+import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy.Char8 as LBS
 import System.Directory (doesFileExist)
 import ULP.Types
@@ -24,7 +25,7 @@ decodeFile fp = do
   if not exists
     then pure []
     else do
-      content <- LBS.readFile fp
+      content <- LBS.fromStrict <$> BS.readFile fp
       pure $ mapMaybeDecode (LBS.lines content)
 
 mapMaybeDecode :: [LBS.ByteString] -> [CommitEvent]

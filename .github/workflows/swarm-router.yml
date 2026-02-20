@@ -1,0 +1,68 @@
+name: swarm-router
+
+on:
+  issues:
+    types: [opened, labeled, unlabeled]
+  pull_request:
+    types: [opened, labeled, synchronize, reopened]
+
+jobs:
+  route:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Route by label
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = '.github/swarm-routing.json';
+            if (!fs.existsSync(path)) {
+              core.info('No routing map found.');
+              return;
+            }
+            const mapping = JSON.parse(fs.readFileSync(path, 'utf8'));
+            const isIssue = !!context.payload.issue;
+            const target = isIssue ? context.payload.issue : context.payload.pull_request;
+            const labels = (target.labels || []).map(l => l.name);
+
+            const assignees = new Set();
+            for (const label of labels) {
+              const matches = mapping[label] || [];
+              for (const login of matches) {
+                assignees.add(String(login).replace(/^@/, ''));
+              }
+            }
+
+            if (assignees.size === 0) {
+              core.info('No label-to-assignee match.');
+              return;
+            }
+
+            if (isIssue) {
+              await github.rest.issues.addAssignees({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: target.number,
+                assignees: [...assignees]
+              });
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: target.number,
+                body: `Swarm routing: assigned ${[...assignees].map(a => '@'+a).join(', ')} based on labels.`
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: target.number,
+                body: `Swarm routing suggestion: ${[...assignees].map(a => '@'+a).join(', ')} based on labels.`
+              });
+            }

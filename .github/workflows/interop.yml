@@ -1,0 +1,64 @@
+name: interop-v1
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  interop:
+    runs-on: ubuntu-latest
+    env:
+      ULP_TEST_PRIVKEY: 0x0123456789012345678901234567890123456789012345678901234567890123
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup GHC
+        uses: haskell-actions/setup@v2
+        with:
+          ghc-version: '9.0.2'
+          cabal-version: '3.4.1.0'
+
+      - name: Browser runtime tests
+        run: |
+          node runtime/browser-v1/tests/smoke.mjs
+          node runtime/browser-v1/tests/signature-hooks.mjs
+          node runtime/browser-v1/tests/merkle.mjs
+          node runtime/browser-v1/tests/merkle-ordering.mjs
+          node runtime/browser-v1/tests/logical-clock.mjs
+
+      - name: Build POSIX/Haskell runtime
+        working-directory: runtime/posix-haskell
+        run: |
+          cabal update
+          cabal build exe:ulp-runtime
+
+      - name: POSIX/Haskell smoke and vectors
+        working-directory: runtime/posix-haskell
+        run: |
+          ./test/cli-smoke.sh
+          ./test/vector-check.sh
+          ./test/reverse-vector-check.sh
+
+      - name: Signature and replay suites
+        working-directory: runtime/posix-haskell
+        run: |
+          ./test/sig-suite.sh
+          ./test/replay-suite.sh
+          ./test/interop-suite.sh
+
+      - name: Upload interop artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: interop-artifacts
+          path: |
+            runtime/posix-haskell/test/vectors/*.json
+            runtime/posix-haskell/test/vectors/*.ndjson
+          if-no-files-found: warn
